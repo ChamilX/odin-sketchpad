@@ -12,14 +12,7 @@
 }
 
 .block {
-    background-color: green;
-}
-
-.block-hover {
-    background-color: blue;
-}
-
-.block, .block-hover {
+    background-color: white;
     border: 1px solid black;
     box-sizing: border-box;
 }

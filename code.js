@@ -1,44 +1,35 @@
 const container = document.querySelector(".container");
 const button = document.querySelector(".create-grid");
-let row = 0;
-let column = 0;
+let size = 0;
+let opacity = 0;
 
 button.addEventListener("click", function() {
-    container.innerHTML = "";
-    row = prompt("Number of squares per row (max 100)");
-    if (row > 100) {
-        alert("row over a 100!!");
-        row = 4;
+    container.replaceChildren();
+    size = prompt("Size of the grid (max 100)");
+    if (size > 100) {
+        alert("size over a 100!!");
+        size = 4;
     }
-    column = prompt("Number of squares per column (max 100)");
-    if (column > 100) {
-        alert("column over a 100!!")
-        column = 4;
-    }
-    createGrid(row, column);
+    createGrid(size);
 })
 
-function calcRow(row) {
-    let width = (50 * row) + 50;
-    width = width.toString();
-    return width + "px";
+function randomColor(){
+    let red = Math.floor((Math.random() * 255) + 1).toString();
+    let green = Math.floor((Math.random() * 255) + 1).toString();
+    let blue = Math.floor((Math.random() * 255) + 1).toString();
+
+    return "rgb(" + red + ", " + green + ", " + blue + ")";
 }
 
-function calcColumn(column) {
-    let width = (50 * column) - 50;
-    width = width.toString();
-    return width + "px";
-}
-
-function createGrid(rowSize, columnSize) {
-    container.style.width = calcRow(rowSize);
-    container.style.height = calcColumn(columnSize);
-    for (i = 0; i < rowSize * columnSize; i++) {
+function createGrid(gridSize) {
+    for (i = 0; i < gridSize * gridSize; i++) {
         const div = document.createElement("div");
         div.classList.add("block");
         div.addEventListener("mouseover", function() {
-            div.setAttribute("class", "block-hover")
+            div.style.backgroundColor = randomColor();
         })
+        div.style.width = (500 / gridSize).toString() + "px";
+        div.style.height = (500 / gridSize).toString() + "px";
         container.appendChild(div);
     }
 }
