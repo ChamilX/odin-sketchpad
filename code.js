@@ -6,7 +6,7 @@ button.addEventListener("click", function() {
 })
 
 function createGrid() {
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < 5 * 5; i++) {
         const div = document.createElement("div");
         div.classList.add("block");
         container.appendChild(div);
